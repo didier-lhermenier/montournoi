@@ -22,7 +22,7 @@ class Manager implements UserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $email;
+    private $username;
 
     /**
      * @ORM\Column(type="json")
@@ -36,9 +36,14 @@ class Manager implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=50)
      */
     private $pseudo;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $email;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -46,30 +51,18 @@ class Manager implements UserInterface
     private $avatar;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Tournament", mappedBy="manager", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Gamer", mappedBy="manager", orphanRemoval=true)
      */
-    private $tournaments;
+    private $gamers;
 
     public function __construct()
     {
-        $this->tournaments = new ArrayCollection();
+        $this->gamers = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
     }
 
     /**
@@ -79,7 +72,14 @@ class Manager implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string) $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
     }
 
     /**
@@ -145,6 +145,18 @@ class Manager implements UserInterface
         return $this;
     }
 
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
     public function getAvatar(): ?string
     {
         return $this->avatar;
@@ -158,34 +170,33 @@ class Manager implements UserInterface
     }
 
     /**
-     * @return Collection|Tournament[]
+     * @return Collection|Gamer[]
      */
-    public function getTournaments(): Collection
+    public function getGamers(): Collection
     {
-        return $this->tournaments;
+        return $this->gamers;
     }
 
-    public function addTournament(Tournament $tournament): self
+    public function addGamer(Gamer $gamer): self
     {
-        if (!$this->tournaments->contains($tournament)) {
-            $this->tournaments[] = $tournament;
-            $tournament->setManager($this);
+        if (!$this->gamers->contains($gamer)) {
+            $this->gamers[] = $gamer;
+            $gamer->setManager($this);
         }
 
         return $this;
     }
 
-    public function removeTournament(Tournament $tournament): self
+    public function removeGamer(Gamer $gamer): self
     {
-        if ($this->tournaments->contains($tournament)) {
-            $this->tournaments->removeElement($tournament);
+        if ($this->gamers->contains($gamer)) {
+            $this->gamers->removeElement($gamer);
             // set the owning side to null (unless already changed)
-            if ($tournament->getManager() === $this) {
-                $tournament->setManager(null);
+            if ($gamer->getManager() === $this) {
+                $gamer->setManager(null);
             }
         }
 
         return $this;
     }
-
 }

@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -24,9 +22,9 @@ class Tournament
     private $name;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="boolean")
      */
-    private $private;
+    private $is_private;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -54,30 +52,14 @@ class Tournament
     private $max_gamers;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="boolean")
      */
-    private $free;
+    private $is_free;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2, nullable=true)
      */
     private $price;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Manager", inversedBy="tournaments")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $manager;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Sport", mappedBy="tournament", orphanRemoval=true)
-     */
-    private $sports;
-
-    public function __construct()
-    {
-        $this->sports = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -98,12 +80,12 @@ class Tournament
 
     public function getPrivate(): ?bool
     {
-        return $this->private;
+        return $this->is_private;
     }
 
-    public function setPrivate(?bool $private): self
+    public function setPrivate(bool $is_private): self
     {
-        $this->private = $private;
+        $this->private = $is_private;
 
         return $this;
     }
@@ -113,7 +95,7 @@ class Tournament
         return $this->picture;
     }
 
-    public function setPicture(?string $picture): self
+    public function setPicture(string $picture): self
     {
         $this->picture = $picture;
 
@@ -168,14 +150,14 @@ class Tournament
         return $this;
     }
 
-    public function getFree(): ?bool
+    public function getIsFree(): ?bool
     {
-        return $this->free;
+        return $this->is_free;
     }
 
-    public function setFree(?bool $free): self
+    public function setIsFree(bool $is_free): self
     {
-        $this->free = $free;
+        $this->is_free = $is_free;
 
         return $this;
     }
@@ -188,49 +170,6 @@ class Tournament
     public function setPrice(?string $price): self
     {
         $this->price = $price;
-
-        return $this;
-    }
-
-    public function getManager(): ?Manager
-    {
-        return $this->manager;
-    }
-
-    public function setManager(?Manager $manager): self
-    {
-        $this->manager = $manager;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Sport[]
-     */
-    public function getSports(): Collection
-    {
-        return $this->sports;
-    }
-
-    public function addSport(Sport $sport): self
-    {
-        if (!$this->sports->contains($sport)) {
-            $this->sports[] = $sport;
-            $sport->setTournament($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSport(Sport $sport): self
-    {
-        if ($this->sports->contains($sport)) {
-            $this->sports->removeElement($sport);
-            // set the owning side to null (unless already changed)
-            if ($sport->getTournament() === $this) {
-                $sport->setTournament(null);
-            }
-        }
 
         return $this;
     }
