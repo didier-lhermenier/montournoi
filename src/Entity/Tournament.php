@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -60,6 +62,28 @@ class Tournament
      * @ORM\Column(type="decimal", precision=10, scale=2, nullable=true)
      */
     private $price;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Gamer", inversedBy="tournaments")
+     */
+    private $gamers;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Sport", mappedBy="tournament", orphanRemoval=true)
+     */
+    private $sports;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Pool", mappedBy="tournament", orphanRemoval=true)
+     */
+    private $pools;
+
+    public function __construct()
+    {
+        $this->gamers = new ArrayCollection();
+        $this->sports = new ArrayCollection();
+        $this->pools = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -170,6 +194,94 @@ class Tournament
     public function setPrice(?string $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Gamer[]
+     */
+    public function getGamers(): Collection
+    {
+        return $this->gamers;
+    }
+
+    public function addGamer(Gamer $gamer): self
+    {
+        if (!$this->gamers->contains($gamer)) {
+            $this->gamers[] = $gamer;
+        }
+
+        return $this;
+    }
+
+    public function removeGamer(Gamer $gamer): self
+    {
+        if ($this->gamers->contains($gamer)) {
+            $this->gamers->removeElement($gamer);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Sport[]
+     */
+    public function getSports(): Collection
+    {
+        return $this->sports;
+    }
+
+    public function addSport(Sport $sport): self
+    {
+        if (!$this->sports->contains($sport)) {
+            $this->sports[] = $sport;
+            $sport->setTournament($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSport(Sport $sport): self
+    {
+        if ($this->sports->contains($sport)) {
+            $this->sports->removeElement($sport);
+            // set the owning side to null (unless already changed)
+            if ($sport->getTournament() === $this) {
+                $sport->setTournament(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Pool[]
+     */
+    public function getPools(): Collection
+    {
+        return $this->pools;
+    }
+
+    public function addPool(Pool $pool): self
+    {
+        if (!$this->pools->contains($pool)) {
+            $this->pools[] = $pool;
+            $pool->setTournament($this);
+        }
+
+        return $this;
+    }
+
+    public function removePool(Pool $pool): self
+    {
+        if ($this->pools->contains($pool)) {
+            $this->pools->removeElement($pool);
+            // set the owning side to null (unless already changed)
+            if ($pool->getTournament() === $this) {
+                $pool->setTournament(null);
+            }
+        }
 
         return $this;
     }

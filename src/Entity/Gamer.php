@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,16 @@ class Gamer
      * @ORM\JoinColumn(nullable=false)
      */
     private $manager;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tournament", mappedBy="gamer")
+     */
+    private $tournaments;
+
+    public function __construct()
+    {
+        $this->tournaments = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +115,34 @@ class Gamer
     public function setManager(?Manager $manager): self
     {
         $this->manager = $manager;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tournament[]
+     */
+    public function getTournaments(): Collection
+    {
+        return $this->tournaments;
+    }
+
+    public function addTournament(Tournament $tournament): self
+    {
+        if (!$this->tournaments->contains($tournament)) {
+            $this->tournaments[] = $tournament;
+            $tournament->addGamer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTournament(Tournament $tournament): self
+    {
+        if ($this->tournaments->contains($tournament)) {
+            $this->tournaments->removeElement($tournament);
+            $tournament->removeGamer($this);
+        }
 
         return $this;
     }
