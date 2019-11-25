@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -66,6 +68,16 @@ class Tournament
      * @ORM\JoinColumn(nullable=false)
      */
     private $manager;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Sport", mappedBy="tournament", orphanRemoval=true)
+     */
+    private $sports;
+
+    public function __construct()
+    {
+        $this->sports = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -188,6 +200,37 @@ class Tournament
     public function setManager(?Manager $manager): self
     {
         $this->manager = $manager;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Sport[]
+     */
+    public function getSports(): Collection
+    {
+        return $this->sports;
+    }
+
+    public function addSport(Sport $sport): self
+    {
+        if (!$this->sports->contains($sport)) {
+            $this->sports[] = $sport;
+            $sport->setTournament($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSport(Sport $sport): self
+    {
+        if ($this->sports->contains($sport)) {
+            $this->sports->removeElement($sport);
+            // set the owning side to null (unless already changed)
+            if ($sport->getTournament() === $this) {
+                $sport->setTournament(null);
+            }
+        }
 
         return $this;
     }
