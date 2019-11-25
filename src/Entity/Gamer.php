@@ -49,9 +49,15 @@ class Gamer
      */
     private $tournaments;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Match", mappedBy="gamer1")
+     */
+    private $matches;
+
     public function __construct()
     {
         $this->tournaments = new ArrayCollection();
+        $this->matches = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -142,6 +148,37 @@ class Gamer
         if ($this->tournaments->contains($tournament)) {
             $this->tournaments->removeElement($tournament);
             $tournament->removeGamer($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Match[]
+     */
+    public function getMatches(): Collection
+    {
+        return $this->matches;
+    }
+
+    public function addMatch(Match $match): self
+    {
+        if (!$this->matches->contains($match)) {
+            $this->matches[] = $match;
+            $match->setGamer1($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMatch(Match $match): self
+    {
+        if ($this->matches->contains($match)) {
+            $this->matches->removeElement($match);
+            // set the owning side to null (unless already changed)
+            if ($match->getGamer1() === $this) {
+                $match->setGamer1(null);
+            }
         }
 
         return $this;
