@@ -28,6 +28,37 @@ class Match
      */
     private $gamer2;
 
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $score1;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $score2;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $round;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $in_progress;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Sport", inversedBy="matches")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $sport;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Pool", inversedBy="matches")
+     */
+    private $pool;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,6 +84,78 @@ class Match
     public function setGamer2(?Gamer $gamer2): self
     {
         $this->gamer2 = $gamer2;
+
+        return $this;
+    }
+
+    public function getScore1(): ?int
+    {
+        return $this->score1;
+    }
+
+    public function setScore1(?int $score1): self
+    {
+        $this->score1 = $score1;
+
+        return $this;
+    }
+
+    public function getScore2(): ?int
+    {
+        return $this->score2;
+    }
+
+    public function setScore2(?int $score2): self
+    {
+        $this->score2 = $score2;
+
+        return $this;
+    }
+
+    public function getRound(): ?int
+    {
+        return $this->round;
+    }
+
+    public function setRound(?int $round): self
+    {
+        $this->round = $round;
+
+        return $this;
+    }
+
+    public function getInProgress(): ?bool
+    {
+        return $this->in_progress;
+    }
+
+    public function setInProgress(bool $in_progress): self
+    {
+        $this->in_progress = $in_progress;
+
+        return $this;
+    }
+
+    public function getSport(): ?Sport
+    {
+        return $this->sport;
+    }
+
+    public function setSport(?Sport $sport): self
+    {
+        $this->sport = $sport;
+
+        return $this;
+    }
+
+    public function getPool(): ?Pool
+    {
+        return $this->pool;
+    }
+
+    public function setPool(?Pool $pool): self
+    {
+        $this->pool = $pool;
 
         return $this;
     }
