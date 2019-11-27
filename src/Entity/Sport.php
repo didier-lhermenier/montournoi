@@ -49,6 +49,11 @@ class Sport
      */
     private $matches;
 
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $area_name;
+
     public function __construct()
     {
         $this->matches = new ArrayCollection();
@@ -146,6 +151,18 @@ class Sport
                 $match->setSport(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAreaName(): ?string
+    {
+        return $this->area_name;
+    }
+
+    public function setAreaName(string $area_name): self
+    {
+        $this->area_name = $area_name;
 
         return $this;
     }
