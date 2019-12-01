@@ -76,7 +76,7 @@ class GamerFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return array(
-            Manager::class
+            ManagerFixtures::class
         );
     }
 }
