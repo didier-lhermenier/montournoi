@@ -45,9 +45,9 @@ class Sport
     private $tournament;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Match", mappedBy="sport", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Contest", mappedBy="sport", orphanRemoval=true)
      */
-    private $matches;
+    private $contests;
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -56,7 +56,7 @@ class Sport
 
     public function __construct()
     {
-        $this->matches = new ArrayCollection();
+        $this->contests = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -125,30 +125,30 @@ class Sport
     }
 
     /**
-     * @return Collection|Match[]
+     * @return Collection|Contest[]
      */
-    public function getMatches(): Collection
+    public function getContests(): Collection
     {
-        return $this->matches;
+        return $this->contests;
     }
 
-    public function addMatch(Match $match): self
+    public function addContest(Contest $contest): self
     {
-        if (!$this->matches->contains($match)) {
-            $this->matches[] = $match;
-            $match->setSport($this);
+        if (!$this->contests->contains($contest)) {
+            $this->contests[] = $contest;
+            $contest->setPool($this);
         }
 
         return $this;
     }
 
-    public function removeMatch(Match $match): self
+    public function removeContest(Contest $contest): self
     {
-        if ($this->matches->contains($match)) {
-            $this->matches->removeElement($match);
+        if ($this->contests->contains($contest)) {
+            $this->contests->removeElement($contest);
             // set the owning side to null (unless already changed)
-            if ($match->getSport() === $this) {
-                $match->setSport(null);
+            if ($contest->getPool() === $this) {
+                $contest->setPool(null);
             }
         }
 

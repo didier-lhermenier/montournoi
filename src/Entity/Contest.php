@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\MatchRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ContestRepository")
  */
-class Match
+class Contest
 {
     /**
      * @ORM\Id()
@@ -17,13 +17,13 @@ class Match
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Gamer", inversedBy="matches")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Gamer", inversedBy="contests")
      * @ORM\JoinColumn(nullable=false)
      */
     private $gamer1;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Gamer", inversedBy="matches")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Gamer", inversedBy="contests")
      * @ORM\JoinColumn(nullable=false)
      */
     private $gamer2;
@@ -49,13 +49,13 @@ class Match
     private $in_progress;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Sport", inversedBy="matches")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Sport", inversedBy="contests")
      * @ORM\JoinColumn(nullable=false)
      */
     private $sport;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Pool", inversedBy="matches")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Pool", inversedBy="contests")
      */
     private $pool;
 
