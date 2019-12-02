@@ -29,11 +29,6 @@ class Sport
     private $area_qty;
 
     /**
-     * @ORM\Column(type="string", length=10)
-     */
-    private $prefix;
-
-    /**
      * @ORM\Column(type="string", length=1)
      */
     private $letter;
@@ -84,18 +79,6 @@ class Sport
     public function setAreaQty(int $area_qty): self
     {
         $this->area_qty = $area_qty;
-
-        return $this;
-    }
-
-    public function getPrefix(): ?string
-    {
-        return $this->prefix;
-    }
-
-    public function setPrefix(string $prefix): self
-    {
-        $this->prefix = $prefix;
 
         return $this;
     }

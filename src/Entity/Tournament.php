@@ -115,7 +115,7 @@ class Tournament
 
     public function setPrivate(bool $is_private): self
     {
-        $this->private = $is_private;
+        $this->is_private = $is_private;
 
         return $this;
     }
