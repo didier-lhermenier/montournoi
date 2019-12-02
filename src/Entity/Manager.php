@@ -55,9 +55,15 @@ class Manager implements UserInterface
      */
     private $gamers;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Tournament", mappedBy="manager", orphanRemoval=true)
+     */
+    private $tournaments;
+
     public function __construct()
     {
         $this->gamers = new ArrayCollection();
+        $this->tournaments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -194,6 +200,37 @@ class Manager implements UserInterface
             // set the owning side to null (unless already changed)
             if ($gamer->getManager() === $this) {
                 $gamer->setManager(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tournament[]
+     */
+    public function getTournaments(): Collection
+    {
+        return $this->tournaments;
+    }
+
+    public function addTournament(Tournament $tournament): self
+    {
+        if (!$this->tournaments->contains($tournament)) {
+            $this->tournaments[] = $tournament;
+            $tournament->setManager($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTournament(Tournament $tournament): self
+    {
+        if ($this->tournaments->contains($tournament)) {
+            $this->tournaments->removeElement($tournament);
+            // set the owning side to null (unless already changed)
+            if ($tournament->getManager() === $this) {
+                $tournament->setManager(null);
             }
         }
 

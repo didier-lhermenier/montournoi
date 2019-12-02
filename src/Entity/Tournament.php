@@ -78,6 +78,12 @@ class Tournament
      */
     private $pools;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Manager", inversedBy="tournaments")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $manager;
+
     public function __construct()
     {
         $this->gamers = new ArrayCollection();
@@ -282,6 +288,18 @@ class Tournament
                 $pool->setTournament(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getManager(): ?Manager
+    {
+        return $this->manager;
+    }
+
+    public function setManager(?Manager $manager): self
+    {
+        $this->manager = $manager;
 
         return $this;
     }
