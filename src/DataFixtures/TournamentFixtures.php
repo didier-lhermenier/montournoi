@@ -31,18 +31,19 @@ class TournamentFixtures extends Fixture implements DependentFixtureInterface
         $tournament2->setPrivate(false);
         $tournament2->setDateBegin(new DateTime("2019-12-28 9:00:00"));
         $tournament2->setDateEnd(new DateTime("2019-12-29 19:00:00"));
-        $tournament1->setManager($this->getReference("manager1"));
+        $tournament2->setManager($this->getReference("manager1"));
         $manager->persist($tournament2);
         $this->setReference("challenge", $tournament2);
 
         $tournament3 = new Tournament();
         $tournament3->setName("Les boules nocturnes");
         $tournament3->setIsFree(false);
+        $tournament3->setPrice("12");
         $tournament3->setLocation("Liffré");
         $tournament3->setMaxGamers(32);
         $tournament3->setPrivate(true);
         $tournament3->setDateBegin(new DateTime("2019-12-20 20:00:00"));
-        $tournament1->setManager($this->getReference("manager2"));
+        $tournament3->setManager($this->getReference("manager2"));
         $manager->persist($tournament3);
         $this->setReference("boules", $tournament3);
 

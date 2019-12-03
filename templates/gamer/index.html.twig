@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gamer index{% endblock %}
+
+{% block body %}
+    <h1>Gamer index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Pseudo</th>
+                <th>Email</th>
+                <th>Avatar</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for gamer in gamers %}
+            <tr>
+                <td>{{ gamer.id }}</td>
+                <td>{{ gamer.name }}</td>
+                <td>{{ gamer.pseudo }}</td>
+                <td>{{ gamer.email }}</td>
+                <td>{{ gamer.avatar }}</td>
+                <td>
+                    <a href="{{ path('gamer_show', {'id': gamer.id}) }}">show</a>
+                    <a href="{{ path('gamer_edit', {'id': gamer.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('gamer_new') }}">Create new</a>
+{% endblock %}

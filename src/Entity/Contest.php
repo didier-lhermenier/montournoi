@@ -17,13 +17,13 @@ class Contest
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Gamer", inversedBy="contests")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Gamer", inversedBy="contests1")
      * @ORM\JoinColumn(nullable=false)
      */
     private $gamer1;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Gamer", inversedBy="contests")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Gamer", inversedBy="contests2")
      * @ORM\JoinColumn(nullable=false)
      */
     private $gamer2;

@@ -45,19 +45,25 @@ class Gamer
     private $manager;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Tournament", mappedBy="gamer")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tournament", mappedBy="gamers")
      */
     private $tournaments;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Contest", mappedBy="gamer1")
      */
-    private $contests;
+    private $contests1;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Contest", mappedBy="gamer2")
+     */
+    private $contests2;
 
     public function __construct()
     {
         $this->tournaments = new ArrayCollection();
-        $this->contests = new ArrayCollection();
+        $this->contests1   = new ArrayCollection();
+        $this->contests2   = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -154,30 +160,62 @@ class Gamer
     }
 
     /**
-     * @return Collection|Contest[]
+     * @return Collection|Contest1[]
      */
-    public function getContests(): Collection
+    public function getContests1(): Collection
     {
-        return $this->contests;
+        return $this->contests1;
     }
 
-    public function addContest(Contest $contest): self
+    public function addContest(Contest $contest1): self
     {
-        if (!$this->contests->contains($contest)) {
-            $this->contests[] = $contest;
-            $contest->setGamer1($this);
+        if (!$this->contests1->contains($contest1)) {
+            $this->contests1[] = $contest1;
+            $contest1->setGamer1($this);
         }
 
         return $this;
     }
 
-    public function removeContest(Contest $contest): self
+    public function removeContest1(Contest $contest1): self
     {
-        if ($this->contests->contains($contest)) {
-            $this->contests->removeElement($contest);
+        if ($this->contests1->contains($contest1)) {
+            $this->contests1->removeElement($contest1);
             // set the owning side to null (unless already changed)
-            if ($contest->getGamer1() === $this) {
-                $contest->setGamer1(null);
+            if ($contest1->getGamer1() === $this) {
+                $contest1->setGamer1(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * @return Collection|Contest2[]
+     */
+    public function getContests2(): Collection
+    {
+        return $this->contests2;
+    }
+
+    public function addContest2(Contest $contest2): self
+    {
+        if (!$this->contests2->contains($contest2)) {
+            $this->contests2[] = $contest2;
+            $contest2->setGamer2($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContest2(Contest $contest2): self
+    {
+        if ($this->contests2->contains($contest2)) {
+            $this->contests2->removeElement($contest2);
+            // set the owning side to null (unless already changed)
+            if ($contest2->getGamer2() === $this) {
+                $contest2->setGamer2(null);
             }
         }
 
