@@ -78,6 +78,10 @@ Encore
         from: './assets/favicon',
         to: 'favicon/[path][name].[ext]'
     })
+    .copyFiles({
+        from: './assets/fonts',
+        to: 'fonts/[path][name].[ext]'
+    })
 ;
 
 module.exports = Encore.getWebpackConfig();

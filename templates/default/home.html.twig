@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil montournoi.org{%  endblock %}
+
+{% block body %}
+    <main class="container text-center">
+
+        <div class="row mt-5">
+            <div class="col">
+                <h1 class="lobster">Bienvenue sur montournoi&nbsp;!</h1>
+            </div>
+        </div>
+
+        <div class="mt-5">
+            <img src="{{ asset('build/images/logo.png') }}" alt="logo montournoi" width="106px">
+        </div>
+
+        <div class="row mt-5">
+            <div class="col">
+                <h3>Gérez rapidement et facilement tous vos tournois de sports depuis notre application gratuite&nbsp;!</h3>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <div class="col-lg-6 col-xl-3 p-3"><a class="menu lobster btn btn-block btn-lg btn-perso1 shadow" href="/tournoi/dashboard">Gérer mon tournoi</a></div>
+            <div class="col-lg-6 col-xl-3 p-3"><a class="menu lobster btn btn-block btn-lg btn-perso2 shadow" href="/tournoi">Suivre un tournoi</a></div>
+            <div class="col-lg-6 col-xl-3 p-3"><a class="menu lobster btn btn-block btn-lg btn-perso6 shadow" href="/contact">Contactez-nous</a></div>
+            <div class="col-lg-6 col-xl-3 p-3"><a class="menu lobster btn btn-block btn-lg btn-perso5 shadow" href="/a-propos">A propos de montournoi</a></div>
+        </div>
+    </main>
+{% endblock %}
