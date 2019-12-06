@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/tournoi", name="index", methods={"GET"})
+ * @Route("/tournoi")
  */
 
 class TournamentController extends AbstractController
@@ -18,15 +18,7 @@ class TournamentController extends AbstractController
      */
     public function viewTournament()
     {
-        return $this->render('tournament/dashboard.html.twig');
-    }
-
-    /**
-     * @Route("/dashboard", name="dashboard", methods={"GET"})
-     */
-    public function dashboard()
-    {
-        return $this->render('tournament/dashboard.html.twig');
+        return $this->render('tournament/home.html.twig');
     }
 
     /**

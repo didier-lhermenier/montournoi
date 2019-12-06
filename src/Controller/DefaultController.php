@@ -18,19 +18,12 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/login", name="login", methods={"GET"})
+     * @Route("/dashboard", name="dashboard", methods={"GET"})
      */
-    public function login()
+    public function dashboard()
     {
-        return $this->render('default/login.html.twig');
-    }
-
-    /**
-     * @Route("/", name="register", methods={"GET"})
-     */
-    public function register()
-    {
-        return $this->render('default/register.html.twig');
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        return $this->render('default/dashboard.html.twig');
     }
 
     /**

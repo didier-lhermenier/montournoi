@@ -12,8 +12,17 @@
 }
 
 body {
-    background-color: white;
-    font-family: Roboto;
+  background-color: white;
+  font-family: Roboto;
+  a, a:visited, a:link {
+    color: #907;
+  }
+  a:hover {
+    color: #609;
+  }
+  a.btn {
+    color: white;
+  }
 }
 
 h1 {
@@ -41,7 +50,7 @@ footer {
   }
 
   a:hover {
-    color: #BBDDFF;
+    color: #BDF;
   }
 }
 

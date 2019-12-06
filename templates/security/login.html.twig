@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+<main class="container">
+    <div class="text-center mt-5">
+        <a href="/"><img src="{{ asset('build/images/logo.png') }}" alt="logo montournoi" width="106px" title="Retour vers l'accueil"></a>
+    </div>
+
+    <div class="text-center m-5">
+        <h1>Veuillez vous connecter&nbsp;!</h1>
+    </div>
+
+    <form method="post">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {% if app.user %}
+            <div class="mb-3">
+                Bienvenue {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+            </div>
+        {% endif %}
+
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label" for="inputUsername">username</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control form-control-lg" value="{{ last_username }}" name="username" id="inputUsername" placeholder="Prénom Nom" required autofocus>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label" for="inputPassword">Mot de passe</label>
+            <div class="col-md-10">
+                <input type="password" class="form-control form-control-lg" name="password" id="inputPassword" required>
+            </div>
+        </div>
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+        <div class="checkbox mb-3">
+            <label class="offset-md-2">
+                <input type="checkbox" name="_remember_me"> Se rappeler de moi.
+            </label>
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <button type="submit" class="lobster btn btn-lg btn-perso4 mb-2 col align-self-center">Se connecter</button>
+            </div>
+        </div>
+    </form>
+</main>
+{% endblock %}

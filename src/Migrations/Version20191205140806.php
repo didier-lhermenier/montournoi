@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20191202114457 extends AbstractMigration
+final class Version20191205140806 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -24,7 +24,7 @@ final class Version20191202114457 extends AbstractMigration
 
         $this->addSql('CREATE TABLE contest (id INT AUTO_INCREMENT NOT NULL, gamer1_id INT NOT NULL, gamer2_id INT NOT NULL, sport_id INT NOT NULL, pool_id INT DEFAULT NULL, score1 SMALLINT DEFAULT NULL, score2 SMALLINT DEFAULT NULL, round SMALLINT DEFAULT NULL, in_progress TINYINT(1) NOT NULL, INDEX IDX_1A95CB52297DB63 (gamer1_id), INDEX IDX_1A95CB53022748D (gamer2_id), INDEX IDX_1A95CB5AC78BCF8 (sport_id), INDEX IDX_1A95CB57B3406DF (pool_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE gamer (id INT AUTO_INCREMENT NOT NULL, manager_id INT NOT NULL, name VARCHAR(255) NOT NULL, pseudo VARCHAR(50) NOT NULL, email VARCHAR(100) DEFAULT NULL, avatar VARCHAR(255) DEFAULT NULL, INDEX IDX_88241BA7783E3463 (manager_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE manager (id INT AUTO_INCREMENT NOT NULL, username VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, pseudo VARCHAR(50) NOT NULL, email VARCHAR(100) NOT NULL, avatar VARCHAR(255) DEFAULT NULL, UNIQUE INDEX UNIQ_FA2425B9F85E0677 (username), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE manager (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, username VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, email VARCHAR(100) NOT NULL, avatar VARCHAR(255) DEFAULT NULL, UNIQUE INDEX UNIQ_FA2425B9F85E0677 (username), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE pool (id INT AUTO_INCREMENT NOT NULL, tournament_id INT NOT NULL, INDEX IDX_AF91A98633D1A3E7 (tournament_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE sport (id INT AUTO_INCREMENT NOT NULL, tournament_id INT NOT NULL, name VARCHAR(255) NOT NULL, area_qty SMALLINT NOT NULL, letter VARCHAR(1) NOT NULL, area_name VARCHAR(50) NOT NULL, INDEX IDX_1A85EFD233D1A3E7 (tournament_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE tournament (id INT AUTO_INCREMENT NOT NULL, manager_id INT NOT NULL, name VARCHAR(255) NOT NULL, is_private TINYINT(1) NOT NULL, picture VARCHAR(255) DEFAULT NULL, date_begin DATETIME NOT NULL, date_end DATETIME DEFAULT NULL, location VARCHAR(255) DEFAULT NULL, max_gamers SMALLINT NOT NULL, is_free TINYINT(1) NOT NULL, price NUMERIC(10, 2) DEFAULT NULL, INDEX IDX_BD5FB8D9783E3463 (manager_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
