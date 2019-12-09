@@ -17,26 +17,7 @@
     </head>
     <body>
         {% block body %}{% endblock %}
-            {% block footer %}
-                <footer class="p-3 mt-5 bg-black">
-                    <div class="container text-center">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6 col-lg-3">
-                                &copy; 2019 - <a href="/">montournoi.org</a>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-3">
-                                <a href="/a-propos">A propos...</a>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-3">
-                                <a href="/mentions-legales">Mentions légales</a>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-3">
-                                <a href="/contact">Contactez-nous</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            {%  endblock %}
+        {% block footer %}{%  endblock %}
         {% block javascripts %} {{ encore_entry_script_tags('app') }} {% endblock %}
     </body>
 </html>

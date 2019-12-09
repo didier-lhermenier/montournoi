@@ -5,9 +5,7 @@
 {% block body %}
     <main class="container">
 
-        <div class="text-center my-3">
-            <a href="/"><img src="{{ asset('build/images/logo.png') }}" alt="logo montournoi" width="106px" title="Retour vers l'accueil"></a>
-        </div>
+        {%  include('logo.html.twig') %}
 
         <div class="text-center mb-5">
             <h1>Mentions légales</h1>
@@ -70,4 +68,8 @@
         <p>Utilisateur : Internaute se connectant, utilisant le site susnommé.</p>
         <p>Informations personnelles : « les informations qui permettent, sous quelque forme que ce soit, directement ou non, l'identification des personnes physiques auxquelles elles s'appliquent » (article 4 de la loi n° 78-17 du 6 janvier 1978).</p>
     </main>
+{% endblock %}
+
+{% block footer %}
+    {%  include('footer.html.twig') %}
 {% endblock %}

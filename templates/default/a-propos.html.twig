@@ -5,9 +5,7 @@
 {% block body %}
     <main class="container">
 
-        <div class="text-center my-3">
-            <a href="/"><img src="{{ asset('build/images/logo.png') }}" alt="logo montournoi" width="106px" title="Retour vers l'accueil"></a>
-        </div>
+        {%  include('logo.html.twig') %}
 
         <div class="text-center mb-5">
             <h1>A propos de montournoi !</h1>
@@ -23,4 +21,8 @@
         <p>On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. L'avantage du Lorem Ipsum sur un texte générique comme 'Du texte. Du texte. Du texte.' est qu'il possède une distribution de lettres plus ou moins normale, et en tout cas comparable avec celle du français standard. De nombreuses suites logicielles de mise en page ou éditeurs de sites Web ont fait du Lorem Ipsum leur faux texte par défaut, et une recherche pour 'Lorem Ipsum' vous conduira vers de nombreux sites qui n'en sont encore qu'à leur phase de construction. Plusieurs versions sont apparues avec le temps, parfois par accident, souvent intentionnellement (histoire d'y rajouter de petits clins d'oeil, voire des phrases embarassantes).</p>
 
     </main>
+{% endblock %}
+
+{% block footer %}
+    {%  include('footer.html.twig') %}
 {% endblock %}
