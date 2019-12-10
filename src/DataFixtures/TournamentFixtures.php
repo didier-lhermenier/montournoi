@@ -24,7 +24,7 @@ class TournamentFixtures extends Fixture implements DependentFixtureInterface
         $this->setReference("triathlon", $tournament1);
 
         $tournament2 = new Tournament();
-        $tournament2->setName("Challenge Les 3 raquettes");
+        $tournament2->setName("Challenge des 3 raquettes");
         $tournament2->setIsFree(true);
         $tournament2->setLocation("Bruz - complexe sportif");
         $tournament2->setMaxGamers(64);

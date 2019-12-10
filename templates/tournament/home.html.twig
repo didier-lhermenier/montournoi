@@ -15,6 +15,20 @@
             </div>
         </div>
 
+        <div class="row mb-5">
+            <div class="col">
+                <form action="/tournoi">
+                    <select name="select_tournament" id="st">
+                            <option value="">Choisissez un tournoi public...</option>
+                        {%  for tournament in tournaments %}
+                            <option value="{{ tournament.id }}">{{ tournament.name }}</option>
+                        {%  endfor %}
+                    </select>
+                    <button type="submit" class="btn btn-lg btn-perso5" onclick="if(document.forms.valueOf()) return false;">Suivre ce tournoi</button>
+                </form>
+            </div>
+        </div>
+
     </main>
 {% endblock %}
 

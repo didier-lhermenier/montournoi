@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Tournament;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,11 +15,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class TournamentController extends AbstractController
 {
     /**
-     * @Route("/", name="viewTournament", methods={"GET"})
+     * @Route("/", name="viewTournaments", methods={"GET", "POST"})
      */
-    public function viewTournament()
+    public function viewTournaments(Request $request)
     {
-        return $this->render('tournament/home.html.twig');
+        $tournaments = $this->getDoctrine()->getRepository(Tournament::class)->findBy(["is_private" => false], ["date_begin" => "DESC"]);
+        return $this->render('tournament/home.html.twig', [
+            'tournaments' => $tournaments
+        ]);
     }
 
     /**
