@@ -11,37 +11,17 @@
             <h1>Contactez-nous !</h1>
         </div>
 
-        <form>
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="name">Votre nom</label>
-                <div class="col-md-9">
-                    <input type="text" class="form-control form-control-lg" id="name" name="name" placeholder="Prénom Nom" required>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="email">Votre adresse email</label>
-                <div class="col-md-9">
-                    <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="nom@exemple.com" required>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="objet">Votre objet</label>
-                <div class="col-md-9">
-                    <input type="text" class="form-control form-control-lg" id="objet" name="objet" placeholder="objet...">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="message">Votre message</label>
-                <div class="col-md-9">
-                    <textarea class="form-control form-control-lg" id="message" name="message" rows="4" placeholder="Bonjour," required></textarea>
-                </div>
-            </div>
-            <div class="row justify-content-md-center">
-                <div class="col-md-auto">
-                    <button type="submit" class="lobster btn btn-lg btn-perso5 mb-2 col align-self-center">Envoyer</button>
-                </div>
-            </div>
-        </form>
+        {{ form_start(contactForm) }}
+
+            {{ form_row(contactForm.name) }}
+            {{ form_row(contactForm.email) }}
+            {{ form_row(contactForm.object) }}
+            {{ form_row(contactForm.message, {'attr': {'rows': 4, 'placeholder': 'Bonjour,'} }) }}
+
+        <button class="lobster btn btn-lg btn-perso5 my-2 col align-self-center">Envoyer</button>
+
+        {{ form_end(contactForm) }}
+
     </main>
 {% endblock %}
 

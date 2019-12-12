@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Envoi d'email{%  endblock %}
+
+{% block body %}
+    <main class="container text-center">
+
+        {%  include('logo.html.twig') %}
+
+        <div class="mb-5">
+            <h1>Votre message a bien été envoyé&nbsp;!</h1>
+        </div>
+
+        <div class="mt-5">
+            <img src="{{ asset('build/images/email_ok.png') }}" alt="email success">
+        </div>
+
+        <div class="mt-5">
+            <h3><a href="{{ path('home') }}">Retour vers l'accueil</a></h3>
+        </div>
+
+    </main>
+{% endblock %}
+
+{% block footer %}
+    {%  include('footer.html.twig') %}
+{% endblock %}

@@ -25,6 +25,10 @@ security:
                     - App\Security\LoginFormAuthenticator
             logout:
                 path: app_logout
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 2592000 # 30 days (604800 7 days in seconds
+                path:     /
                 # where to redirect after logout
                 # target: app_any_route
 
@@ -38,6 +42,6 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/profile, roles: ROLE_MANAGER }
         # - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: '^/dashboard', roles: [IS_AUTHENTICATED_REMEMBERED, ROLE_ADMIN] }

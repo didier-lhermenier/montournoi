@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Envoi d'email{%  endblock %}
+
+{% block body %}
+    <main class="container text-center">
+
+        {%  include('logo.html.twig') %}
+
+        <div class="mb-5">
+            <h1 class="text-danger">Nous sommes désolés, mais une erreur s'est produite et votre message n'a pas pu être envoyé&nbsp;!</h1>
+        </div>
+
+        <div class="mt-5">
+            <img src="{{ asset('build/images/email_ko.png') }}" alt="email error">
+        </div>
+
+        <div class="mt-5">
+            <h3><a href="{{ path(app.request.get('_route')) }}">Réessayer</a> ou <a href="{{ path('home') }}">Retourner vers l'accueil</a></h3>
+        </div>
+
+    </main>
+{% endblock %}
+
+{% block footer %}
+    {%  include('footer.html.twig') %}
+{% endblock %}

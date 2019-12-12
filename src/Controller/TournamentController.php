@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Tournament;
+use App\Repository\TournamentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,10 +20,19 @@ class TournamentController extends AbstractController
      */
     public function viewTournaments(Request $request)
     {
-        $tournaments = $this->getDoctrine()->getRepository(Tournament::class)->findBy(["is_private" => false], ["date_begin" => "DESC"]);
-        return $this->render('tournament/home.html.twig', [
-            'tournaments' => $tournaments
-        ]);
+        /* if POST
+        {
+            return $this->render('tournament/show.html.twig');
+        }
+        else // GET
+        {
+
+        }*/
+
+            $tournaments = $this->getDoctrine()->getRepository(Tournament::class)->findBy(["is_private" => false], ["date_begin" => "DESC"]);
+            return $this->render('tournament/home.html.twig', [
+                'tournaments' => $tournaments
+            ]);
     }
 
     /**
@@ -47,6 +57,19 @@ class TournamentController extends AbstractController
     public function delTournament()
     {
         return $this->render('tournament/index.html.twig');
+    }
+
+    /**
+     * @Route("/show", name="show_tournament", methods={"GET"})
+     */
+    public function show(TournamentRepository $tournamentRepository, Request $request)
+    {
+        $id = $request->query->get('id'); // ?id=2
+        $tournament = $tournamentRepository->find($id);
+
+        return $this->render('tournament/show.html.twig', [
+            'tournament' => $tournament
+        ]);
     }
 
 }
