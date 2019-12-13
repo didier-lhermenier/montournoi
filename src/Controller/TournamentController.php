@@ -6,7 +6,6 @@ use App\Entity\Tournament;
 use App\Repository\TournamentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -16,23 +15,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class TournamentController extends AbstractController
 {
     /**
-     * @Route("/", name="viewTournaments", methods={"GET", "POST"})
+     * @Route("/", name="selectTournaments", methods={"GET", "POST"})
      */
-    public function viewTournaments(Request $request)
+    public function selectTournaments(Request $request)
     {
-        /* if POST
-        {
-            return $this->render('tournament/show.html.twig');
-        }
-        else // GET
-        {
+        $tournaments = $this->getDoctrine()->getRepository(Tournament::class)->findBy(["is_private" => false], ["date_begin" => "DESC"]);
 
-        }*/
-
-            $tournaments = $this->getDoctrine()->getRepository(Tournament::class)->findBy(["is_private" => false], ["date_begin" => "DESC"]);
-            return $this->render('tournament/home.html.twig', [
-                'tournaments' => $tournaments
-            ]);
+        return $this->render('tournament/home.html.twig', [
+            'tournaments' => $tournaments
+        ]);
     }
 
     /**
@@ -65,11 +56,11 @@ class TournamentController extends AbstractController
     public function show(TournamentRepository $tournamentRepository, Request $request)
     {
         $id = $request->query->get('id'); // ?id=2
-        $tournament = $tournamentRepository->find($id);
-
-        return $this->render('tournament/show.html.twig', [
-            'tournament' => $tournament
-        ]);
+        $tournament = $tournamentRepository->findOneBy(['id'=> $id, 'is_private'=> false]);
+        if ($tournament)
+            return $this->render('tournament/show.html.twig', ['tournament' => $tournament]);
+        else
+            return $this->redirectToRoute('home');
     }
 
 }

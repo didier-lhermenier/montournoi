@@ -5,5 +5,17 @@
 {% block body %}
     <main class="container-fluid">
         <h1 class="text-center">{{ tournament.name }}</h1>
+        <h2 class="text-center">
+            {{ tournament.location }} ({{ tournament.dateBegin|date("d/m/Y") }}{% if tournament.dateEnd %}- {{ tournament.dateEnd|date("d/m/Y") }}{% endif %})
+        </h2>
+        <pre>
+            {{ dump(tournament) }}
+        </pre>
+        <h2>Participants</h2>
+        <ul>
+            {% for gamer in tournament.gamers %}
+                <li>{{ gamer.name }}</li>
+            {% endfor %}
+        </ul>
     </main>
 {% endblock %}
