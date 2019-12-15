@@ -93,4 +93,12 @@ class DefaultController extends AbstractController
     {
         return $this->render('default/mentions-legales.html.twig');
     }
+
+    /**
+     * @Route("/politique-de-confidentialite", name="rgpd", methods={"GET"})
+     */
+    public function rgpd()
+    {
+        return $this->render('default/politique-de-confidentialite.html.twig');
+    }
 }
