@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil{% endblock %}
+
+{% block body %}
+    <main class="container">
+
+        {%  include('logo.html.twig') %}
+
+        <div class="text-center mb-5">
+            <h1>Mon profil&nbsp;!</h1>
+            <img class="img-fluid" src="{{ asset('build/images/profile.png') }}" alt="mon profil">
+        </div>
+    </main>
+{% endblock %}
+
+
+{% block footer %}
+    {%  include('footer.html.twig') %}
+{% endblock %}

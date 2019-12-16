@@ -31,6 +31,15 @@ class DefaultController extends AbstractController
     }
 
     /**
+     * @Route("/profile", name="profile", methods={"GET"})
+     */
+    public function profile()
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        return $this->render('profile/profile.html.twig');
+    }
+
+    /**
      * @Route("/a-propos", name="about", methods={"GET"})
      */
     public function about()

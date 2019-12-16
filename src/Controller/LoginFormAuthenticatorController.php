@@ -14,9 +14,9 @@ class LoginFormAuthenticatorController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
+        if ($this->getUser()) { // Si un utilisateur est déjà loggé, on le renvoi à la page d'accueil
+            return $this->redirectToRoute('home');
+        }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();

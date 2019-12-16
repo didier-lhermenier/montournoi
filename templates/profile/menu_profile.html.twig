@@ -1,0 +1,12 @@
+{% if app.user %}
+    <div class="float-right mr-5 mt-3 text-center bg-light p-3 border border-dark rounded shadow">
+        <h6>Bienvenue {{ app.user.username }}&nbsp;!</h6>
+        <a href="{{ path('profile') }}">
+            <img class="img-fluid" src="{{ asset('build/images/profile.png') }}" width="64px" alt="profil">
+            <br>
+            Mon profil
+        </a>
+        <br>
+        <a href="{{ path('app_logout') }}">Déconnexion</a>
+    </div>
+{% endif %}

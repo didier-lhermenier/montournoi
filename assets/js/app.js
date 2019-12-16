@@ -12,4 +12,4 @@ require('../css/app.scss');
 // const $ = require('jquery');
 
 import CookieBox from 'cookie-consent-box';
-new CookieBox({ backgroundColor: '#079', url: '/politique-de-confidentialite', language: 'fr' }).init();
+new CookieBox({ backgroundColor: '#079', url: '/politique-de-confidentialite', language: 'fr', target: '_self' }).init();
