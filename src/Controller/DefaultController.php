@@ -37,8 +37,15 @@ class DefaultController extends AbstractController
     public function profile(Request $request): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
-        $form = $this->createForm(ManagerType::class);
+        $user = $this->getUser();
+        $form = $this->createForm(ManagerType::class, $user);
         $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+        }
 
         return $this->render('profile/profile.html.twig', [
             'profileForm' => $form->createView(),

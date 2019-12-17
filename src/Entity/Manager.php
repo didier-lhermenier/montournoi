@@ -38,7 +38,6 @@ class Manager implements UserInterface
     private $roles = [];
 
     /**
-     * @Assert\NotBlank()
      * @Assert\Length(max=4096)
      */
     private $plainPassword;
@@ -261,4 +260,10 @@ class Manager implements UserInterface
     {
         $this->plainPassword = $plainPassword;
     }
+
+    public function __toString()
+    {
+        return $this->getUsername();
+    }
+
 }

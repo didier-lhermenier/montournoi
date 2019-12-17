@@ -38,21 +38,7 @@ class ManagerType extends AbstractType
                     ])
                 ]
             ])
-            ->add('plainPassword', RepeatedType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                'type' => PasswordType::class,
-                'first_options' => array('label' => 'Mot de passe (min 6 caractères)'),
-                'second_options' => array('label' => 'Répétez le mot de passe'),
-                'constraints' => [
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Votre mot de passe doit comporter au moins {{ limit }} caractères',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096
-                    ])
-                ]
-            ])
+            // ->add('plainPassword', PasswordType::class)
             ->add('submit', submitType::class, [
                 'label' => 'Modifier mon profil',
                 'attr' => ['class' => 'lobster btn btn-lg btn-perso5 my-2 col align-self-center']

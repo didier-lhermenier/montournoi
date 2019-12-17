@@ -108,12 +108,12 @@ class Tournament
         return $this;
     }
 
-    public function getPrivate(): ?bool
+    public function getIsPrivate(): ?bool
     {
         return $this->is_private;
     }
 
-    public function setPrivate(bool $is_private): self
+    public function setIsPrivate(bool $is_private): self
     {
         $this->is_private = $is_private;
 
@@ -303,4 +303,10 @@ class Tournament
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
 }

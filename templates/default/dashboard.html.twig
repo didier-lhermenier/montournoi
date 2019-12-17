@@ -4,7 +4,7 @@
 
 {% block body %}
     <main class="container">
-
+        {%  include('profile/menu_profile.html.twig') %}
         {%  include('logo.html.twig') %}
 
         <div class="text-center mb-5">
@@ -14,6 +14,10 @@
         <div class="text-center">
             <img class="img-fluid" src="{{ asset('build/images/dashboard.png') }}" alt="dashboard" width="800px">
         </div>
+
+        {% for tournament in app.user.tournaments %}
+            {{ tournament.name }}
+        {% endfor %}
 
     </main>
 {% endblock %}

@@ -6,7 +6,7 @@
     <main class="container-fluid">
         <h1 class="text-center">{{ tournament.name }}</h1>
         <h2 class="text-center">
-            {{ tournament.location }} ({{ tournament.dateBegin|date("d/m/Y") }}{% if tournament.dateEnd %}- {{ tournament.dateEnd|date("d/m/Y") }}{% endif %})
+            {{ tournament.location }} ({{ tournament.dateBegin|date("d/m/Y") }}{% if tournament.dateEnd %} - {{ tournament.dateEnd|date("d/m/Y") }}{% endif %})
         </h2>
         <h2>Participants</h2>
         <ul>
