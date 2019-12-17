@@ -4,31 +4,24 @@ namespace App\Form;
 
 use App\Entity\Manager;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
-class RegistrationFormType extends AbstractType
+class ManagerType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, [
-                'required' => true,
+            ->add('name',TextType::class, [
                 'label' => 'Prénom Nom',
-                'constraints' => [
-                    new Length([
-                        'max' => 255
-                    ])
-                ]
+                'disabled' => true
             ])
-            ->add('username', TextType::class, [
-                'required' => true,
+            ->add('username',TextType::class, [
                 'label' => 'Pseudo',
                 'constraints' => [
                     new Length([
@@ -36,11 +29,12 @@ class RegistrationFormType extends AbstractType
                     ])
                 ]
             ])
-            ->add('email', EmailType::class, [
+            ->add('email',TextType::class, [
+                'label' => 'Email',
                 'required' => true,
                 'constraints' => [
                     new Length([
-                        'max' => 180
+                    'max' => 180
                     ])
                 ]
             ])
@@ -50,11 +44,7 @@ class RegistrationFormType extends AbstractType
                 'type' => PasswordType::class,
                 'first_options' => array('label' => 'Mot de passe (min 6 caractères)'),
                 'second_options' => array('label' => 'Répétez le mot de passe'),
-                'required' => true,
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez saisir un mot de passe',
-                    ]),
                     new Length([
                         'min' => 6,
                         'minMessage' => 'Votre mot de passe doit comporter au moins {{ limit }} caractères',
@@ -62,6 +52,10 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096
                     ])
                 ]
+            ])
+            ->add('submit', submitType::class, [
+                'label' => 'Modifier mon profil',
+                'attr' => ['class' => 'lobster btn btn-lg btn-perso5 my-2 col align-self-center']
             ])
         ;
     }

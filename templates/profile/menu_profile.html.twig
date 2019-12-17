@@ -1,12 +1,14 @@
 {% if app.user %}
-    <div class="float-right mr-5 mt-3 text-center bg-light p-3 border border-dark rounded shadow">
-        <h6>Bienvenue {{ app.user.username }}&nbsp;!</h6>
-        <a href="{{ path('profile') }}">
-            <img class="img-fluid" src="{{ asset('build/images/profile.png') }}" width="64px" alt="profil">
-            <br>
-            Mon profil
-        </a>
-        <br>
-        <a href="{{ path('app_logout') }}">Déconnexion</a>
+    <div class="float-right p-0 mr-5 mt-0 text-center dropdown profile">
+        <div class="dropbtn">
+            <a href="{{ path('profile') }}">
+                <img class="img-fluid" src="{{ asset('build/images/profile.png') }}" alt="profil">
+            </a>
+                <h5 class="lobster p-1 m-0">{{ app.user.username }}</h5>
+        </div>
+        <div class="dropdown-content">
+            <a href="{{ path('profile') }}">Mon profil</a>
+            <a href="{{ path('app_logout') }}">Déconnexion</a>
+        </div>
     </div>
 {% endif %}

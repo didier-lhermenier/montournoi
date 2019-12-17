@@ -43,8 +43,10 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: '^/dashboard', roles: [IS_AUTHENTICATED_REMEMBERED, ROLE_ADMIN] }
-        - { path: ^/profile, roles: ROLE_MANAGER }
+
+        - { path: '^/dashboard', roles: [ROLE_MANAGER, ROLE_ADMIN] }
+        - { path: ^/profile, roles: [ROLE_MANAGER, ROLE_ADMIN] }
+
         - { path: ^/manager, roles: ROLE_ADMIN }
         - { path: ^/gamer, roles: ROLE_ADMIN }
         - { path: ^/tournament, roles: ROLE_ADMIN }

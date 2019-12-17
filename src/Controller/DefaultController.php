@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\ContactType;
+use App\Form\ManagerType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,17 +27,22 @@ class DefaultController extends AbstractController
      */
     public function dashboard()
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
         return $this->render('default/dashboard.html.twig');
     }
 
     /**
-     * @Route("/profile", name="profile", methods={"GET"})
+     * @Route("/profile", name="profile", methods={"GET", "POST"})
      */
-    public function profile()
+    public function profile(Request $request): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        return $this->render('profile/profile.html.twig');
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
+        $form = $this->createForm(ManagerType::class);
+        $form->handleRequest($request);
+
+        return $this->render('profile/profile.html.twig', [
+            'profileForm' => $form->createView(),
+        ]);
     }
 
     /**

@@ -58,3 +58,42 @@ footer {
 .btn {
   border-radius: 16px;
 }
+
+/* profile dropdown */
+.profile {
+  min-width: 120px;
+  max-width: 148px;
+}
+.dropbtn {
+  padding: 4px;
+  cursor: pointer;
+  img {
+    max-width: 100px;
+  }
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f5f5f5;
+  min-width: 120px;
+  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 4px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #CCC;}
+.dropdown:hover .dropdown-content {display: block;}
+//.dropdown:hover .dropbtn {background-color: #3e8e41;}

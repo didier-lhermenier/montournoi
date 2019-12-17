@@ -8,9 +8,6 @@
         <h2 class="text-center">
             {{ tournament.location }} ({{ tournament.dateBegin|date("d/m/Y") }}{% if tournament.dateEnd %}- {{ tournament.dateEnd|date("d/m/Y") }}{% endif %})
         </h2>
-        <pre>
-            {{ dump(tournament) }}
-        </pre>
         <h2>Participants</h2>
         <ul>
             {% for gamer in tournament.gamers %}
