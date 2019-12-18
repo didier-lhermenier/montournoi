@@ -43,7 +43,7 @@
                             <td>{{ tournament.dateEnd ? tournament.dateEnd|date('d/m/Y H:i') : '-' }}</td>
                             <td>{{ tournament.location }}</td>
                             <td>{{ tournament.maxGamers }}</td>
-                            <td>{{ tournament.isFree ? '-' : '{{ tournament.price }}' }}</td>
+                            <td>{{ tournament.price ?: 'Gratuit' }}</td>
                             <td>
                                 <a class="btn btn-perso1" href="{{ path('view_tournoi', {'id': tournament.id}) }}">Voir</a>
                                 <a class="btn btn-perso2" href="{{ path('edit_tournoi', {'id': tournament.id}) }}">Editer</a>

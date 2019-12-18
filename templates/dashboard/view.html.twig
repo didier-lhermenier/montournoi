@@ -42,12 +42,8 @@
                     <td>{{ tournament.maxGamers }}</td>
                 </tr>
                 <tr>
-                    <th>Gratuit ?</th>
-                    <td>{{ tournament.isFree ? 'Oui' : 'Non' }}</td>
-                </tr>
-                <tr>
                     <th>Prix</th>
-                    <td>{{ tournament.price }}</td>
+                    <td>{{ tournament.price ?: 'Gratuit' }}</td>
                 </tr>
             </tbody>
         </table>

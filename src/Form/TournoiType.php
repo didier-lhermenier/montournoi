@@ -43,7 +43,7 @@ class TournoiType extends AbstractType
             ])
             ->add('is_free', CheckboxType::class, [
                 'label'    => 'Ce tournoi est gratuit',
-                'data' => true,
+
                 'required' => false
             ])
             ->add('price', IntegerType::class, [
