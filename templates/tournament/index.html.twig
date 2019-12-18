@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tournament index{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Tournament index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Is_private</th>
+                <th>Picture</th>
+                <th>Date_begin</th>
+                <th>Date_end</th>
+                <th>Location</th>
+                <th>Max_gamers</th>
+                <th>Is_free</th>
+                <th>Price</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tournament in tournaments %}
+            <tr>
+                <td>{{ tournament.id }}</td>
+                <td>{{ tournament.name }}</td>
+                <td>{{ tournament.isPrivate ? 'Yes' : 'No' }}</td>
+                <td>{{ tournament.picture }}</td>
+                <td>{{ tournament.dateBegin ? tournament.dateBegin|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ tournament.dateEnd ? tournament.dateEnd|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ tournament.location }}</td>
+                <td>{{ tournament.maxGamers }}</td>
+                <td>{{ tournament.isFree ? 'Yes' : 'No' }}</td>
+                <td>{{ tournament.price }}</td>
+                <td>
+                    <a href="{{ path('tournament_show', {'id': tournament.id}) }}">show</a>
+                    <a href="{{ path('tournament_edit', {'id': tournament.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('tournament_new') }}">Create new</a>
+</div>
+{% endblock %}

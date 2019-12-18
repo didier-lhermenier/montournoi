@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord{%  endblock %}
+
+{% block body %}
+    {%  include('profile/menu_profile.html.twig') %}
+    <main class="container">
+        {%  include('logo.html.twig') %}
+
+        <div class="text-center mb-5">
+            <h1>Tableau de bord</h1>
+        </div>
+
+        <!--
+        <div class="text-center">
+            <img class="img-fluid" src="{{ asset('build/images/dashboard.png') }}" alt="dashboard" width="800px">
+        </div>
+        -->
+        <div class="text-center">
+            {% if tournaments is not empty %}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Privé</th>
+                        <th>Début</th>
+                        <th>Fin</th>
+                        <th>Lieu</th>
+                        <th>Maxi</th>
+                        <th>Prix</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for tournament in tournaments %}
+                        <tr>
+                            <td>{{ tournament.id }}</td>
+                            <td>{{ tournament.name }}</td>
+                            <td>{{ tournament.isPrivate ? 'Oui' : 'Non' }}</td>
+                            <td>{{ tournament.dateBegin|date('d/m/Y H:i')}}</td>
+                            <td>{{ tournament.dateEnd ? tournament.dateEnd|date('d/m/Y H:i') : '-' }}</td>
+                            <td>{{ tournament.location }}</td>
+                            <td>{{ tournament.maxGamers }}</td>
+                            <td>{{ tournament.isFree ? '-' : '{{ tournament.price }}' }}</td>
+                            <td>
+                                <a class="btn btn-perso1" href="{{ path('view_tournoi', {'id': tournament.id}) }}">Voir</a>
+                                <a class="btn btn-perso2" href="{{ path('edit_tournoi', {'id': tournament.id}) }}">Editer</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="text-center m-3">
+                    Vous n'avez aucun tournoi pour le moment !
+                </div>
+            {% endif %}
+            <a class="btn btn-perso5 btn-lg col" href="{{ path('new_tournoi') }}">Créer un nouveau tournoi</a>
+        </div>
+    </main>
+{% endblock %}
+
+{% block footer %}
+    {%  include('footer.html.twig') %}
+{% endblock %}

@@ -1,5 +1,5 @@
 {% if app.user %}
-    <div class="float-right p-0 m-1 text-center dropdown profile">
+    <div class="float-right p-0 m-2 text-center dropdown profile">
         <div class="dropbtn">
             <a href="{{ path('profile') }}">
                 <img class="img-fluid" src="{{ asset('build/images/profile.png') }}" alt="profil">
@@ -8,6 +8,7 @@
         </div>
         <div class="dropdown-content">
             <a href="{{ path('profile') }}">Mon profil</a>
+            <a href="{{ path('home_dashboard') }}">Tableau de bord</a>
             <a href="{{ path('app_logout') }}">Déconnexion</a>
         </div>
     </div>

@@ -3,9 +3,8 @@
 {% block title %}Accueil montournoi.org{%  endblock %}
 
 {% block body %}
+    {%  include('profile/menu_profile.html.twig') %}
     <main class="container text-center">
-        {%  include('profile/menu_profile.html.twig') %}
-
         <div class="text-center my-3">
             <img src="{{ asset('build/images/logo.png') }}" alt="logo montournoi">
         </div>
@@ -19,10 +18,10 @@
         </div>
 
         <div class="row my-5">
-            <div class="col-lg-6 col-xl-3 p-3"><a class="menu lobster btn btn-block btn-lg btn-perso1 shadow" href="/dashboard">Gérer mon tournoi</a></div>
-            <div class="col-lg-6 col-xl-3 p-3"><a class="menu lobster btn btn-block btn-lg btn-perso2 shadow" href="/tournoi">Suivre un tournoi</a></div>
-            <div class="col-lg-6 col-xl-3 p-3"><a class="menu lobster btn btn-block btn-lg btn-perso6 shadow" href="/contact">Contactez-nous</a></div>
-            <div class="col-lg-6 col-xl-3 p-3"><a class="menu lobster btn btn-block btn-lg btn-perso5 shadow" href="/a-propos">A propos...</a></div>
+            <div class="col-lg-6 col-xl-3 p-3"><a class="menu lobster btn btn-block btn-lg btn-perso1 shadow" href="{{ path('home_dashboard') }}">Gérer mon tournoi</a></div>
+            <div class="col-lg-6 col-xl-3 p-3"><a class="menu lobster btn btn-block btn-lg btn-perso2 shadow" href="{{ path('index_tournoi') }}">Suivre un tournoi</a></div>
+            <div class="col-lg-6 col-xl-3 p-3"><a class="menu lobster btn btn-block btn-lg btn-perso6 shadow" href="{{ path('contact') }}">Contactez-nous</a></div>
+            <div class="col-lg-6 col-xl-3 p-3"><a class="menu lobster btn btn-block btn-lg btn-perso5 shadow" href="{{ path('about') }}">A propos...</a></div>
         </div>
     </main>
 {% endblock %}

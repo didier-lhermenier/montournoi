@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau tournoi{% endblock %}
+
+{% block body %}
+    {%  include('profile/menu_profile.html.twig') %}
+    <main class="container">
+        {%  include('logo.html.twig') %}
+
+        <div class="text-center mb-5">
+            <h1>Créer un nouveau tournoi</h1>
+        </div>
+
+        {{ include('dashboard/_form.html.twig') }}
+
+        <div class="text-center my-3">
+                <a class="btn btn-perso2" href="{{ path('home_dashboard') }}">Retour</a>
+        </div>
+    </main>
+{% endblock %}

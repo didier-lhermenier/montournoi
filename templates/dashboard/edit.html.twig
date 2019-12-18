@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier mon tournoi{% endblock %}
+
+{% block body %}
+    {%  include('profile/menu_profile.html.twig') %}
+<main class="container">
+    {%  include('logo.html.twig') %}
+
+    <div class="text-center mb-5">
+        <h1>Modifier mon tournoi</h1>
+    </div>
+
+    {{ include('dashboard/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+    {{ include('/dashboard/_delete_form.html.twig') }}
+
+    <div class="text-center">
+        <a class="btn btn-perso2" href="{{ path('home_dashboard') }}">Retour</a>
+    </div>
+
+</main>
+{% endblock %}

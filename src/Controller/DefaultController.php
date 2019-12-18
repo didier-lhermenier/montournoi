@@ -23,15 +23,6 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/dashboard", name="dashboard", methods={"GET"})
-     */
-    public function dashboard()
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
-        return $this->render('default/dashboard.html.twig');
-    }
-
-    /**
      * @Route("/profile", name="profile", methods={"GET", "POST"})
      */
     public function profile(Request $request): Response

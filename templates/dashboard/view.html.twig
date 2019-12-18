@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ tournament.name }}{% endblock %}
+
+{% block body %}
+    {%  include('profile/menu_profile.html.twig') %}
+    <main class="container">
+        {%  include('logo.html.twig') %}
+
+        <div class="text-center mb-5">
+            <h1>{{ tournament.name }}</h1>
+        </div>
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>#</th>
+                    <td>{{ tournament.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ tournament.name }}</td>
+                </tr>
+                <tr>
+                    <th>Privé ?</th>
+                    <td>{{ tournament.isPrivate ? 'Oui' : 'Non' }}</td>
+                </tr>
+                <tr>
+                    <th>Début</th>
+                    <td>{{ tournament.dateBegin ? tournament.dateBegin|date('Y-m-d H:i:s') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Fin</th>
+                    <td>{{ tournament.dateEnd ? tournament.dateEnd|date('Y-m-d H:i:s') : '-' }}</td>
+                </tr>
+                <tr>
+                    <th>Lieu</th>
+                    <td>{{ tournament.location }}</td>
+                </tr>
+                <tr>
+                    <th>Maxi</th>
+                    <td>{{ tournament.maxGamers }}</td>
+                </tr>
+                <tr>
+                    <th>Gratuit ?</th>
+                    <td>{{ tournament.isFree ? 'Oui' : 'Non' }}</td>
+                </tr>
+                <tr>
+                    <th>Prix</th>
+                    <td>{{ tournament.price }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="text-left">
+            <a class="btn btn-perso2" href="{{ path('home_dashboard') }}">Retour</a>
+            <a class="btn btn-perso1" href="{{ path('edit_tournoi', {'id': tournament.id}) }}">Editer</a>
+        </div>
+        {{ include('dashboard/_delete_form.html.twig') }}
+    </main>
+{% endblock %}

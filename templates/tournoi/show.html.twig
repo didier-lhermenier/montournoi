@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil montournoi.org{%  endblock %}
+
+{% block body %}
+    <main class="container-fluid">
+        <h1 class="text-center">{{ tournament.name }}</h1>
+        <h2 class="text-center">
+            {{ tournament.location }} ({{ tournament.dateBegin|date("d/m/Y") }}{% if tournament.dateEnd %} - {{ tournament.dateEnd|date("d/m/Y") }}{% endif %})
+        </h2>
+
+        <h2>Responsable de tournoi</h2>
+        <ul>
+            <li>{{ tournament.manager }}</li>
+        </ul>
+
+        <h2>Participants</h2>
+        <ul>
+            {% for gamer in tournament.gamers %}
+                <li>{{ gamer.name }}</li>
+            {% else %}
+                <li>Aucun participant pour le moment !</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Sports</h2>
+        <ul>
+            {% for sport in tournament.sports %}
+                <li>{{ sport.name }} ({{ sport.getAreaName }} x{{ sport.getAreaQty }})</li>
+            {% else %}
+                <li>Aucun sport pour le moment !</li>
+            {% endfor %}
+        </ul>
+    </main>
+{% endblock %}
