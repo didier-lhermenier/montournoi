@@ -76,7 +76,7 @@ class DashboardController extends AbstractController
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
 
-        if ($tournament->getManager() == $this->getUser()) {// On vérifie que le tournoi à afficher nous apparient bien !
+        if ($tournament->getManager() === $this->getUser()) { // On vérifie que le tournoi à afficher nous appartient bien !
             $form = $this->createForm(TournoiType::class, $tournament);
             $form->handleRequest($request);
 
@@ -96,6 +96,7 @@ class DashboardController extends AbstractController
     else
         return $this->redirectToRoute('home_dashboard');
     }
+
     /**
      * @Route("/{id}", name="delete_tournoi", methods={"DELETE"})
      */
